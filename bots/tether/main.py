@@ -9,17 +9,9 @@ from api import key
 from datetime import datetime
 import pytz
 
-
-
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
 message = 'https://api.telegram.org/bot' + key + '/sendMessage?chat_id=@cryptoinsiderslobby&text='
-# message2 = 'https://api.telegram.org/bot' + key + '/sendMessage?chat_id=DAtQmE5wjmzmFFoSFvdbrw&text='
-#
-# requests.get(message + quote_plus("jk "))
-# https://api.telegram.org/bot665412175:AAF6L_z7YPkb9RwTMjpvNubQelzOMXG6VF0/sendMessage?chat_id=s1315999340_17611182089278269709&text=What%27s+up+bitches
 
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
 
 while True:
     web = webdriver.Chrome(os.getcwd() + '/chromedriver', options=options)

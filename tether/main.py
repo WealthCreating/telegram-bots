@@ -9,6 +9,8 @@ from api import key
 from datetime import datetime
 import pytz
 
+
+
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
 message = 'https://api.telegram.org/bot' + key + '/sendMessage?chat_id=@cryptoinsiderslobby&text='
 # message2 = 'https://api.telegram.org/bot' + key + '/sendMessage?chat_id=DAtQmE5wjmzmFFoSFvdbrw&text='

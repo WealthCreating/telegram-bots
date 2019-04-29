@@ -1,7 +1,6 @@
 import chrome
-import telegram
 from time import sleep
-from bots.tether import tether
+
 
 i = 0
 

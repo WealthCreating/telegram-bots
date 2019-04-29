@@ -7,7 +7,7 @@ import pytz
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
 
 def run(chrome):
-    prev_amt = pd.read_csv('bots/tether/data.csv').iloc[0, 0]
+    prev_amt = pd.read_csv('telegram/tether-alert/data.csv').iloc[0, 0]
     chrome.get(url)
     while True:
         table  = chrome.find_elements_by_xpath('//ul[@class="result-list"]/div/div[1]')

@@ -1,15 +1,9 @@
-from time import sleep
 import chrome
-import os
-import sys
+import telegram
+from time import sleep
+from bots.tether import tether
 
-i = 1
-bots = [
-    {
-        'name': 'tether',
-        'interval': 60
-    }
-]
+i = 0
 
 def run():
     sleep(1)
@@ -17,9 +11,8 @@ def run():
     if i % 600 == 0:
         chrome.refresh()
 
-    for bot in bots:
-        if bot['interval'] % i == 0:
-            bot['name'].run()
+    if i % 60 == 0:
+        tether.run(chrome)
 
 
 

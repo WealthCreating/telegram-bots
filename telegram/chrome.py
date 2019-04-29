@@ -1,11 +1,12 @@
 import os
 from selenium import webdriver
 
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
-
 
 class Chrome:
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+
     def __init__(self):
         self._connect()
 

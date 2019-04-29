@@ -1,22 +1,15 @@
-import os
-import telebot
-import requests
 import pandas as pd
-from urllib.parse import quote_plus
-from selenium import webdriver
-from time import sleep
-from api import key
+from api import key, chat_id
 from datetime import datetime
 import pytz
 
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
-message = 'https://api.telegram.org/bot' + key + '/sendMessage?chat_id=@cryptoinsiderslobby&text='
+
+def run():
+    pass
 
 
 while True:
-    web = webdriver.Chrome(os.getcwd() + '/chromedriver', options=options)
-    web.get(url)
-    sleep(90)
 
     prev_amt = pd.read_csv('data.csv').iloc[0, 0]
     table  = web.find_elements_by_xpath('//ul[@class="result-list"]/div/div[1]')

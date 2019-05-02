@@ -25,7 +25,8 @@ def run(chrome):
         if amt == prev_amt:
             break
 
-    message = 'ALERT: ' + str(amt) + ' USDT sent on ' + date
-    telegram.send_message(__file__, message)
+        message = 'ALERT: ' + amt + ' USDT sent on ' + date
+        telegram.send_message(__file__, message)
+        
     most_recent_amt, _ = find_amt_date(table[0])
-    pd.DataFrame(data=[most_recent_amt], columns=['Tether Printed']).to_csv('data.csv',index=False)
+    pd.DataFrame(data=[most_recent_amt], columns=['Tether Printed']).to_csv('data/tether.csv',index=False)

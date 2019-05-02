@@ -1,7 +1,12 @@
 from time import sleep
 from telegram import chrome, tether
 
-def run(chrome, i):
+i = 0
+
+
+if __name__ == '__main__':
+
+    chrome = chrome.Chrome()
     while True:
         sleep(1)
         i += 1
@@ -10,10 +15,3 @@ def run(chrome, i):
 
         if i % 120 == 0:
             tether.run(chrome)
-
-
-
-if __name__ == '__main__':
-    chrome = chrome.Chrome()
-    i = 0
-    run(chrome, i)

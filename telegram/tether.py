@@ -5,6 +5,7 @@ from telegram import telegram, chrome
 
 
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
+CSV_FILE = 'telegram/data/tether.csv'
 
 def find_amt_date(element):
     row = element.text.split('\n')
@@ -16,7 +17,7 @@ def find_amt_date(element):
     return amt, utc_date_str
 
 def run(chrome):
-    prev_amt = pd.read_csv('telegram/data/tether.csv').iloc[0, 0]
+    prev_amt = pd.read_csv(CSV_FILE).iloc[0, 0]
     chrome.get(url)
     table  = chrome.load('ul[@class="result-list"]/div/div[1]')
 
@@ -27,6 +28,6 @@ def run(chrome):
 
         message = 'ALERT: ' + amt + ' USDT sent on ' + date
         telegram.send_message(__file__, message)
-        
+
     most_recent_amt, _ = find_amt_date(table[0])
-    pd.DataFrame(data=[most_recent_amt], columns=['Tether Printed']).to_csv('data/tether.csv',index=False)
+    pd.DataFrame(data=[most_recent_amt], columns=['Tether Printed']).to_csv(CSV_FILE,index=False)

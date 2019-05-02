@@ -1,20 +1,18 @@
-import chrome
 from time import sleep
+from telegram import chrome
 
-
-i = 0
-
-def run():
+def run(chrome, i):
     sleep(1)
     i += 1
-    if i % 600 == 0:
+    if i % 1200 == 0:
         chrome.refresh()
 
-    if i % 60 == 0:
+    if i % 120 == 0:
         tether.run(chrome)
 
-
+    return run(chrome, i)
 
 if __name__ == '__main__':
     chrome = chrome.Chrome()
-    run()
+    i = 0
+    run(chrome, i)

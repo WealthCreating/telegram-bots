@@ -33,4 +33,4 @@ class Chrome:
                 return results
         else:
             sleep(0.1)
-            return load(element)
+            return self.load(element)

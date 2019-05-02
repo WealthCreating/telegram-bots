@@ -1,10 +1,7 @@
 from datetime import datetime
 import pandas as pd
 import pytz
-
-
 from telegram import telegram, chrome
-chrome = chrome.Chrome()
 
 
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'

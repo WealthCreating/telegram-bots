@@ -1,3 +1,5 @@
+# Sends alert if USDT is moved from the primary holding account.
+# There may be some positive correlation w/ USDT printed & BTC price
 from datetime import datetime
 import pandas as pd
 import pytz
@@ -13,7 +15,7 @@ def find_amt_date(element):
     date = row[4]
     date = datetime.strptime(date, '%m/%d/%Y %H:%M:%S %p')
     utc_date = pytz.timezone('UTC').localize(date, is_dst=None)
-    utc_date_str = datetime.strftime(date, '%m/%d/%Y %H:%M:%S %p') + ' (UTC)'
+    utc_date_str = datetime.strftime(date, '%m/%d/%Y %H:%M:%S %p (UTC)')
     return amt, utc_date_str
 
 def run(chrome):
@@ -27,7 +29,7 @@ def run(chrome):
             break
 
         message = 'ALERT: ' + amt + ' USDT sent on ' + date
-        telegram.send_message(__file__, message)
+        telegram.send_message(file=__file__, message=message)
 
     most_recent_amt, _ = find_amt_date(table[0])
     pd.DataFrame(data=[most_recent_amt], columns=['Tether Printed']).to_csv(CSV_FILE,index=False)

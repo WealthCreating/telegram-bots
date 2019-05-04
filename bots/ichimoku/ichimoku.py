@@ -10,8 +10,9 @@ import matplotlib.pyplot as plt
 
 binance = ccxt.binance()
 
-columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+columns = ['date', 'open', 'high', 'low', 'close', 'volume']
 data = binance.fetch_ohlcv('BTC/USDT', '1h')
 
 df = pd.DataFrame(data=data, columns=columns)
-plt.plot(df['open'])
+df['date'] = df['date'].apply(lambda x: datetime.fromtimestamp(x/1000))
+df.set_index('date', inplace=True)

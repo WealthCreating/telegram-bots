@@ -3,11 +3,11 @@
 from datetime import datetime
 import pandas as pd
 import pytz
-from telegram import telegram, chrome
+import telegram
 
 
 url = 'https://www.omniexplorer.info/address/1NTMakcgVwQpMdGxRQnFKyb3G1FAJysSfz'
-CSV_FILE = 'telegram/data/tether.csv'
+CSV_FILE = 'data/tether.csv'
 
 def find_amt_date(element):
     row = element.text.split('\n')

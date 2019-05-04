@@ -1,7 +1,7 @@
 # Exchanges:  bitfinex, bitstamp, bitmex
 # Time frame: 1 min before utc 00:00:00, then @ 00:00:00
 import ccxt
-from telegram import telegram
+import telegram
 from datetime import datetime
 
 exchanges = ['bitstamp', 'bitfinex', 'bitmex']

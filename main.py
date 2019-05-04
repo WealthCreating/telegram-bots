@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from time import sleep
-from telegram import chrome
-from telegram.bots import btc_candle, tether
+import chrome
+from bots import btc_candle, tether
 
 
 if __name__ == '__main__':

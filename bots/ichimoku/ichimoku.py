@@ -1,33 +1,21 @@
 # Main script for ichimoku cloud
-import os
-import sys
-from datetime import datetime, timedelta
+from bots.ichimoku.functions import make_lines, make_spans
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 
 df = pd.read_csv('data/historical_candles.csv')
 
-p1 = 9
-p2 = 26
-p3 = 52
-p4 = 26
+tenkan_period = 20
+kijun_period = 60
+senkou_b_period = 120
+displacement = 30
 
-# Tenkan (conversion line)
-# (highest high + highest low)/2 for the past 9 periods
+make_lines(df, tenkan=tenkan_period, kijun=kijun_period)
+make_spans(df, displacement=displacement, senkou_b_period=senkou_b_period)
 
-# Kijun (base line)
-# (highest high + lowest low)/2 for the past 26 periods
+print(df)
 
-# Chikou (lagging span)
-# Current closing price time-shifted backwards 26 periods
-
-# Senkou span A (leading span A)
-# (tenkan + kijun)/2 time-shifted fowwards 26 periods
-
-# Senkou span B (leading span B)
-# (highest high + lowest low)/2 for past 52 periods, shifted forwards 26 periods
 
 
 # Span A > Span B == green cloud

@@ -13,7 +13,7 @@ while start_date < end_date:
     data += candles
     start_date += timedelta(hours=len(candles))
 
-df = pd.DataFrame(data=data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-df['timestamp'] /= 1000
-df.set_index('timestamp', drop=True, inplace=True)
-df.to_csv('data/historical_candles.csv')
+df = pd.DataFrame(data=data, columns=['date', 'open', 'high', 'low', 'close', 'volume'])
+
+df['date'] = list(map(lambda x: datetime.fromtimestamp(x/1000), df['date']))
+df.to_csv('data/historical_candles.csv', index=False)

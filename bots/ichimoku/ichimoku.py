@@ -1,18 +1,34 @@
 # Main script for ichimoku cloud
 import os
 import sys
-import ccxt
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 
-binance = ccxt.binance()
+df = pd.read_csv('data/historical_candles.csv')
 
-columns = ['date', 'open', 'high', 'low', 'close', 'volume']
-data = binance.fetch_ohlcv('BTC/USDT', '1h')
+p1 = 9
+p2 = 26
+p3 = 52
+p4 = 26
 
-df = pd.DataFrame(data=data, columns=columns)
-df['date'] = df['date'].apply(lambda x: datetime.fromtimestamp(x/1000))
-df.set_index('date', inplace=True)
+# Tenkan (conversion line)
+# (highest high + highest low)/2 for the past 9 periods
+
+# Kijun (base line)
+# (highest high + lowest low)/2 for the past 26 periods
+
+# Chikou (lagging span)
+# Current closing price time-shifted backwards 26 periods
+
+# Senkou span A (leading span A)
+# (tenkan + kijun)/2 time-shifted fowwards 26 periods
+
+# Senkou span B (leading span B)
+# (highest high + lowest low)/2 for past 52 periods, shifted forwards 26 periods
+
+
+# Span A > Span B == green cloud
+# Span A < Span B == red cloud

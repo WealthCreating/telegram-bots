@@ -12,7 +12,7 @@ def make_lines(df, **kwargs):
 # Senkou span B (leading span B) = (highest high + lowest low)/2 for past 52 periods, shifted forwards 26 periods
 def make_spans(df, displacement, senkou_b_period):
     df['chikou'] = df['close'].shift(-displacement)
-    df['senkou_a'] = df['tenkan'] + df['kijun']
+    df['senkou_a'] = (df['tenkan'] + df['kijun']) / 2
 
     make_lines(df, senkou_b=senkou_b_period)
     df[['senkou_a', 'senkou_b']] = df[['senkou_a', 'senkou_b']].shift(displacement)

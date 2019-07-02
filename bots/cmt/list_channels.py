@@ -1,41 +1,17 @@
-import logging
-from bots.cmt.api import TOKEN
-from telegram import Bot
-from telegram.ext import Updater, CommandHandler, InlineQueryHandler
-
-bot = Bot(token=TOKEN)
-
-
-
-# ------------------------------------------------------------------------------
-
-
-
-# Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-
-logger = logging.getLogger(__name__)
-
-
-def inlinequery(update, context):
-    query = update.inline_query.query
-    results = []
-    update.inline_query.answer(results)
-
+from bots.cmt.api import token, channel_url
+import telebot
 
 
 def main():
-    # Create Updater with token
-    updater = Updater(TOKEN, use_context=True)
 
-    # Get dispatcher to register handlers
-    dp = updater.dispatcher
+    bot = telebot.TeleBot(token)
 
-    # Start bot
-    updater.start_polling()
+    @bot.message_handler(commands=['list_channels'])
+    def run_bot(message):
+        bot.reply_to(message, channel_url)
 
-    updater.idle()
+    bot.polling()
+
 
 
 if __name__ == '__main__':

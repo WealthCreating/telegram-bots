@@ -1,17 +1,31 @@
 ### 2020.01.16
-#### To-do list for Braintree payments with Telegram group
+
 
 ___
 
-#### Braintree
-* [ ] Send test API request
-* [ ] Create sample invoice
-* [ ] Determine interval of reminders (?)
-* [ ] Send transaction data to local directory
+#### General
+* [ ] Review bot examples in python-telegram-bot
 
-#### Telegram
-* [ ] Create subscription bot
+
+
+#### Code management
+* [ ] Create bot class
+* [ ] Substitute new bot into old bot files
+* [ ] Test out new functionality
   * [ ] Remove member from group with http request
   * [ ] Add member to group with http request
   * [ ] Send direct message to member
   * [ ] Return all members in group
+
+___
+
+
+#### Braintree payments with Telegram group
+* __Braintree__
+  * [ ] Send test API request
+  * [ ] Create sample invoice
+  * [ ] Determine interval of reminders (?)
+  * [ ] Send transaction data to local directory
+
+* __Telegram__
+  * [ ] Create subscription bot

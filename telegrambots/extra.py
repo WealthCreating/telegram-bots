@@ -2,8 +2,9 @@
 
 # 2020.01.16
 # Run something similar to echobot2.py from python-telegram-bot
+
 import telegram
-from variables import token
+from api import key
 
 
 bot = telegram.Bot(token=token)

@@ -14,7 +14,8 @@ ___
 * [ ] Test out new functionality
   * [ ] Remove member from group with http request
   * [ ] Add member to group with http request
-  * [ ] Send direct message to member
+  * [X] Send direct message to member
+  * [ ] Return telegram username
   * [ ] Return all members in group
 
 ___

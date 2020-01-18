@@ -1,5 +1,4 @@
-api/
-api.*
+config.yaml
 chromedriver*
 __pycache__
 *.pyc

@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 # Have bot response to messages
-@app.route(f'/{token}', methods=['POST'])
+@app.route(f'/{bot_token}', methods=['POST'])
 def respond():
 
     # Retrieve the message in JSON and transform into Telegram object
@@ -26,4 +26,22 @@ def respond():
         bot.sendMessage(text=f"Can't catch me!", **param)
 
 
-# 
+# Create webhook for bot
+@app.route('/set_webhook', methods=['GET', 'POST'])
+def set_webhook():
+    webhook = bot.setWebhook(f'{URL}{bot_token}')
+    if webhook:
+        return 'success'
+    else:
+        return 'failure'
+
+
+# Make a homepage that shows the engine is up
+@app.route('/hello')
+def index():
+    return '.?1.'
+
+
+# Run app
+if __name__ == '__main__':
+    app.run(threaded=True)

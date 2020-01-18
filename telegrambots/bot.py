@@ -27,6 +27,11 @@ class Bot:
         self.updater.idle()
 
 
+    def add_command(self, command_str, *args, **kwargs):
+        
+        pass
+
+
     def error_handler(self, update, context):
         pass
 

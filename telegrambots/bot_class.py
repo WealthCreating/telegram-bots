@@ -2,15 +2,20 @@ from api import token
 import telebot
 import pandas as pd
 
-# TODO: Replicate the scrollable window
 
 
-class Bot:
+class Bot(telebot.Telebot):
 
     def __init__(self, token):
 
         # Create bot instance
-        self.bot = telebot.Telebot(token)
+        super().__init__(token)
 
         # add basic commands
         self.command()
+
+
+
+if __name__ == '__main__':
+
+    bot = Bot(token)

@@ -1,3 +1,5 @@
+from wrappers import restricted
+
 import sys
 import yaml
 import pathlib
@@ -16,16 +18,24 @@ class Bot:
     def __init__(self):
 
         # Configure bot settings
-        self._config()
+        self.configure()
 
         # Create bot instance
-        self.manager = Updater(self.config['token'], user_context=True)
+        self.updater = Updater(self.config['token'], user_context=True)
+        self.manager = self.updater.dispatcher
 
-        # add basic commands
+        # TODO: add basic commands
         self.add_command()
 
+        # TODO: add message handlers
+        self.add_message_handler()
 
-    def _config(self, *args, **kwargs):
+        # TODO: log all errors
+        self.add_error_handler()
+
+
+
+    def configure(self, *args, **kwargs):
 
         # load config file
         my_file = Path(self.config_file)
@@ -33,22 +43,10 @@ class Bot:
         # Check if config file exists
         if my_file.is_file():
             with open(config_file) as fp:
-                self.config = yaml.load(fp)
+                self.config = yaml.load(fp, Loader=yaml.FullLoader)
         else:
             pprint('config.yaml file does not exist.  Please make from config.sample.yaml file')
             sys.exit()
-
-
-    # Wrapper to restrict bot functions to admins
-    def restricted(fn):
-        def wrapper(bot, update, *args, **kwargs):
-            user_id = update.effective_user.id
-            if user_id not in self.config['ADMINS']:
-                # TODO: send message that user is not permitted
-                print(f'Unauthorized access denied for {user_id}')
-                return
-            return fn(bot, update, *args, **kwargs)
-        return wrapper
 
 
     # Command to start bot for listening
@@ -57,5 +55,13 @@ class Bot:
 
 
     # Add commands to bot
-    def add_command(self, command=None):
+    def add_command(self, command_str=None, command_fn=None):
+        self.manager.add_handler(CommandHandler(command_str, command_fn))
+
+
+    # TODO: add message handlers to bot
+    def add_message_handler(self, *args, **kwargs):
+        pass
+
+    def add_error_handler(self, *args, **kwargs):
         pass

@@ -1,12 +1,7 @@
 ### 2020.01.16
 
-
-___
-
 #### General
-* [ ] Review bot examples in python-telegram-bot
-
-
+* [ ] Review bot examples natalia.py
 
 #### Code management
 * [ ] Create bot class
@@ -19,15 +14,29 @@ ___
   * [ ] Save username to local file
   * [ ] Return all members in group
 
-___
-
-
 #### Braintree payments with Telegram group
 * __Braintree__
   * [ ] Send test API request
   * [ ] Create sample invoice
   * [ ] Determine interval of reminders (?)
   * [ ] Send transaction data to local directory
-
 * __Telegram__
   * [ ] Create subscription bot
+
+
+---
+### 2020.01.19
+
+#### Storing user data from Telegram
+* `users.csv`
+  - user_id, last_invoice_id, subscription_term(months), banned
+* `admins.csv`
+  - user_id, username
+* `invoices.csv`
+  - invoice_id, date, user_id, subscription_term (months), braintree_link
+* `atta_free.csv` and `atta_paid.csv`
+  - username, user_id, in_paid
+
+
+#### Goal: message all members in ATTA regular that are not in ATTA elite
+* [ ] Add chat_id to config.yaml for both atta channels

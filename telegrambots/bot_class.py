@@ -1,3 +1,5 @@
+# https://github.com/python-telegram-bot/python-telegram-bot/wiki/Transition-guide-to-Version-12.0
+
 from wrappers import restricted
 
 import sys
@@ -12,12 +14,15 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
 def start(bot, update):
-    username = update.message.from_user.username
-    user_id = update.message.from_user.id
-    chat_id = update.message.chat.id
-    text = f'Hello `{username}`, your user_id is `{user_id}`'
-    bot.sendMessage(chat_id=chat_id, text=text, parse_mode='Markdown')
+    # username = update.message.from_user.username
+    # user_id = update.message.from_user.id
+    # chat_id = update.message.chat.id
+    # text = f'Hello `{username}`, your user_id is `{user_id}`'
+    # bot.sendMessage(chat_id=chat_id, text=text, parse_mode='Markdown')
 
+
+def start(update, context):
+    update.message.reply_text('Hey there')
 
 
 class Bot:
@@ -28,11 +33,12 @@ class Bot:
         self.configure(config_file)
 
         # Create bot instance
-        self.updater = Updater(self.config['token'], user_context=True)
+        self.updater = Updater(self.config['TOKEN'], use_context=True)
         self.manager = self.updater.dispatcher
 
         # TODO: add basic commands
-        self.add_command()
+        # Testing out `start` command
+        self.add_command(command_str='start', command_fn=start)
 
         # TODO: add message handlers
         self.add_message_handler()
@@ -40,14 +46,11 @@ class Bot:
         # TODO: log all errors
         self.add_error_handler()
 
-        # Testing out `start` command
-        self.add_command(command_str='start', command_fn=start)
-
 
     def configure(self, config_file, *args, **kwargs):
 
         # load config file
-        my_file = Path(config_file)
+        my_file = pathlib.Path(config_file)
 
         # Check if config file exists
         if my_file.is_file():
@@ -56,11 +59,6 @@ class Bot:
         else:
             pprint('config.yaml file does not exist.  Please make from config.sample.yaml file')
             sys.exit()
-
-
-    # Command to start bot for listening
-    def run(self):
-        self.manager.start_polling()
 
 
     # Add commands to bot
@@ -74,3 +72,7 @@ class Bot:
 
     def add_error_handler(self, *args, **kwargs):
         pass
+
+    # Command to start bot for listening
+    def run(self):
+        self.updater.start_polling()

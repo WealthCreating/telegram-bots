@@ -1,5 +1,5 @@
 # Running the bot
-from bot_class import bot
+from bot_class import Bot
 
 from datetime import datetime, timedelta
 from time import sleep

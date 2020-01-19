@@ -11,10 +11,10 @@ ___
 #### Code management
 * [ ] Create bot class
 * [ ] Substitute new bot into old bot files
-* [ ] Test out new functionality
+* [ ] Test out bot functionality
   * [ ] Remove member from group with http request
   * [ ] Add member to group with http request
-  * [X] Send direct message to member
+  * [ ] Send direct message to member
   * [ ] Return telegram username
   * [ ] Save username to local file
   * [ ] Return all members in group

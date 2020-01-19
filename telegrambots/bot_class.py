@@ -7,18 +7,25 @@ import pathlib
 import pandas as pd
 
 from pprint import pprint
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+# from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+
+def start(bot, update):
+    username = update.message.from_user.username
+    user_id = update.message.from_user.id
+    chat_id = update.message.chat.id
+    text = f'Hello `{username}`, your user_id is `{user_id}`'
+    bot.sendMessage(chat_id=chat_id, text=text, parse_mode='Markdown')
+
 
 
 class Bot:
 
-    self.config_file = '../config.yaml'
-
-    def __init__(self):
+    def __init__(self, config_file='../config.yaml'):
 
         # Configure bot settings
-        self.configure()
+        self.configure(config_file)
 
         # Create bot instance
         self.updater = Updater(self.config['token'], user_context=True)
@@ -33,12 +40,14 @@ class Bot:
         # TODO: log all errors
         self.add_error_handler()
 
+        # Testing out `start` command
+        self.add_command(command_str='start', command_fn=start)
 
 
-    def configure(self, *args, **kwargs):
+    def configure(self, config_file, *args, **kwargs):
 
         # load config file
-        my_file = Path(self.config_file)
+        my_file = Path(config_file)
 
         # Check if config file exists
         if my_file.is_file():
@@ -50,7 +59,7 @@ class Bot:
 
 
     # Command to start bot for listening
-    def start(self):
+    def run(self):
         self.manager.start_polling()
 
 

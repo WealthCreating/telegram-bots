@@ -39,4 +39,11 @@
 
 
 #### Goal: message all members in ATTA regular that are not in ATTA elite
-* [ ] Add chat_id to config.yaml for both atta channels
+* [x] Add chat_id to config.yaml for both atta channels
+* [ ] Fetching users
+  * [ ] Return all members within channels
+  * [ ] Store channel members to local file
+* [ ] Private message myself from bot using either username or user_id
+* [ ] Use correct bot
+  * [ ] Update bot photo
+  * [ ] Update bot token to work with atta_payments_bot

@@ -1,6 +1,19 @@
+from telegram.ext import CommandHandler
+from pprint import pprint
 
 
 class Commands:
 
     def __init__(self, *args, **kwargs):
-        pass
+
+        # Add commands
+        self.add_command('start')
+
+
+    def add_command(self, fn_str):
+        fn = getattr(self, fn_str)
+        self.manager.add_handler(CommandHandler(fn_str, fn))
+
+
+    def start(self, update, context):
+        update.message.reply_text('Wrapper works with manager')

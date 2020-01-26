@@ -7,22 +7,21 @@ import yaml
 with open('../config.yaml') as fp:
     config = yaml.load(fp, Loader=yaml.FullLoader)
 
+config['CHANNELS'].items()
 
-api_id = '1196118'
-api_hash = 'f9524543760f8a3733bf4dce1c91cdb4'
-name = 'carlfarterson'
-channel = '@AllThingsTA'
 
-client = TelegramClient('session_name', api_id, api_hash)
+client = TelegramClient('session_name', config['API_ID'], config['API_HASH'])
 
 client.start()
 
-# get all the users
-users = [[u.id, u.first_name, u.last_name, u.username] \
-         for u in client.iter_participants(channel, aggressive=True)]
+# get users for each channel
+for channel_name, channel_id in config['CHANNELS'].items():
 
+    users = [[u.id, u.first_name, u.last_name, u.username] \
+             for u in client.iter_participants(channel_id, aggressive=True)]
 
-df = pd.DataFrame(users, columns=['id', 'first_name', 'last_name', 'username'])
-df.to_csv('../data/users/ATTA_FREE.csv', index=False)
+    df = pd.DataFrame(users, columns=['id', 'first_name', 'last_name', 'username'])
+    df.to_csv(f'../data/users/{channel_name}.csv', index=False)
+
 
 client.disconnect()

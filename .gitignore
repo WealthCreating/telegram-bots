@@ -1,7 +1,11 @@
+# File created automatically when running telebot
+session_name.*
+
+
 config.yaml
-chromedriver*
 __pycache__
 *.pyc
+
 
 
 # Byte-compiled / optimized / DLL files

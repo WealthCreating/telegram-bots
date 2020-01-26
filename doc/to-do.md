@@ -1,19 +1,5 @@
 ### 2020.01.16
 
-#### General
-* [ ] Review bot examples natalia.py
-
-#### Code management
-* [ ] Create bot class
-* [ ] Substitute new bot into old bot files
-* [ ] Test out bot functionality
-  * [ ] Remove member from group with http request
-  * [ ] Add member to group with http request
-  * [ ] Send direct message to member
-  * [ ] Return telegram username
-  * [ ] Save username to local file
-  * [ ] Return all members in group
-
 #### Braintree payments with Telegram group
 * __Braintree__
   * [ ] Send test API request
@@ -40,10 +26,26 @@
 
 #### Goal: message all members in ATTA regular that are not in ATTA elite
 * [x] Add chat_id to config.yaml for both atta channels
-* [ ] Fetching users
-  * [ ] Return all members within channels
-  * [ ] Store channel members to local file
-* [ ] Private message myself from bot using either username or user_id
-* [ ] Use correct bot
-  * [ ] Update bot photo
-  * [ ] Update bot token to work with atta_payments_bot
+* [x] Fetching users
+  * [x] Return all members in public channel (1.25)
+  * [x] Return all members in private channel (1.25)
+  * [x] Store channel members to local file (1.25)
+* [ ] Send messages
+  * [x] From my account to another user using username
+  * [x] From my account to another user using user_id
+  * [x] From bot to another using username (1.25)
+    * Impossible to send direct messages from bot
+  * [x] From bot to another using user_id
+    * Impossible to send direct messages from bot
+
+
+---
+### 2020.01.23
+
+#### Potential bot uses
+* Announcement of bot and `/start` command
+* Send messages to users
+* Manage ATTA subscriber group
+  * Add/remove members
+  * Notify members when their subscription is close to expiring
+1. Send message to username

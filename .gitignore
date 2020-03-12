@@ -1,6 +1,7 @@
 # File created automatically when running telebot
 session_name.*
-
+users/*
+users.csv
 
 config.yaml
 __pycache__

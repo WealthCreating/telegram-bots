@@ -30,13 +30,19 @@
   * [x] Return all members in public channel (1.25)
   * [x] Return all members in private channel (1.25)
   * [x] Store channel members to local file (1.25)
-* [ ] Send messages
+* [x] Send messages
   * [x] From my account to another user using username
   * [x] From my account to another user using user_id
   * [x] From bot to another using username (1.25)
     * Impossible to send direct messages from bot
   * [x] From bot to another using user_id
     * Impossible to send direct messages from bot
+* [ ] Managing members
+  * [ ] Invite a user to a group
+  * [x] Remove a user from a group with their user_id
+  * [ ] Unban a user to invite back to channel
+  * [x] Make a user an admin and add to admin document
+* [ ] Reminding members
 
 
 ---

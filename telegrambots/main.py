@@ -8,4 +8,6 @@ from time import sleep
 if __name__ == '__main__':
 
     bot = Bot()
-    bot.run()
+
+    # Start bot for listening
+    bot.updater.start_polling()

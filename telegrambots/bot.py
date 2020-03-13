@@ -19,7 +19,6 @@ class Bot(Commands):
 
     def __init__(self, config_file='../config.yaml', *args, **kwargs):
 
-
         # Configure bot settings
         self.configure(config_file)
 
@@ -29,9 +28,6 @@ class Bot(Commands):
 
         # TODO: add basic commands
         super().__init__(self)
-
-        # Testing out `start` command
-        # self.add_command(command_str='start', command_fn=self.start)
 
         # TODO: add message handlers
         self.add_message_handler()
@@ -51,7 +47,6 @@ class Bot(Commands):
 
         # Log all errors and add error handler
         self.logger = logging.getLogger(__name__)
-        
         # self.manager.add_handler(CallbackQueryHandler())
 
 
@@ -59,10 +54,6 @@ class Bot(Commands):
     def add_message_handler(self, *args, **kwargs):
         pass
 
+
     def add_error_handler(self, *args, **kwargs):
         logger.warning(f'Update "{update}" caused error "{context.error}"')
-
-
-    # Command to start bot for listening
-    def run(self):
-        self.updater.start_polling()

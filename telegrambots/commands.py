@@ -16,4 +16,8 @@ class Commands:
 
 
     def start(self, update, context):
-        update.message.reply_text('Wrapper works with manager')
+
+        msg = self.config['MESSAGES']['start']
+        user_data = update.message.from_user.__dict__
+
+        update.message.reply_text(msg.format(**user_data))

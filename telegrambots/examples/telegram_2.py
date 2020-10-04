@@ -20,18 +20,65 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 
 import logging
 
+# ------------------------------------------------------------------------------
+## BASIC SETUP
+
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 
+# Options for users to choose from
 reply_keyboard = [['Age', 'Favourite colour'],
                   ['Number of siblings', 'Something else...'],
                   ['Done']]
+
+# Bind to telegram keyboard object
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
+# Create converstaion handler
+conv_handler = ConversationHandler(
+    entry_points=[CommandHandler('start', start(update, context))])
 
+CHOOSING, TYPING_REPLY, TYPING_CHOICE = range(3)
+
+# Build conversation possibilities
+conversation_kwargs = {
+    'entry_points': [CommandHandler('start', start)],
+    'fallbacks': [MessageHandler(Filters.regex('^Done$'), done)],
+    'name': 'my_conversation',
+    'persistent': True,
+    'states': {
+        CHOOSING: [
+            MessageHandler(
+                Filters.regex('^(Age|Favourite colour|Number of siblings)$'),
+                regular_choice
+            ),
+            MessageHandler(
+                Filters.regex('^Something else...$'),
+                custom_choice
+            )
+        ],
+        TYPING_CHOICE: [
+            MessageHandler(
+                Filters.text,
+                regular_choice
+            ),
+        ],
+        TYPING_REPLY: [
+            MessageHandler(
+                Filters.text,
+                received_information
+            ),
+        ]
+    }
+}
+
+# ------------------------------------------------------------------------------
+## FUNCTIONS
+
+# @utility
 def facts_to_str(user_data):
     facts = list()
 
@@ -117,41 +164,7 @@ def main():
     dp = updater.dispatcher
 
 
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start(update, context))])
 
-    CHOOSING, TYPING_REPLY, TYPING_CHOICE = range(3)
-
-    conversation_kwargs = {
-        'entry_points': [CommandHandler('start', start)],
-        'fallbacks': [MessageHandler(Filters.regex('^Done$'), done)],
-        'name': 'my_conversation',
-        'persistent': True,
-        'states': {
-            CHOOSING: [
-                MessageHandler(
-                    Filters.regex('^(Age|Favourite colour|Number of siblings)$'),
-                    regular_choice
-                ),
-                MessageHandler(
-                    Filters.regex('^Something else...$'),
-                    custom_choice
-                )
-            ],
-            TYPING_CHOICE: [
-                MessageHandler(
-                    Filters.text,
-                    regular_choice
-                ),
-            ],
-            TYPING_REPLY: [
-                MessageHandler(
-                    Filters.text,
-                    received_information
-                ),
-            ]
-        }
-    }
 
 
     # Add conversation handler with the states CHOOSING, TYPING_CHOICE and TYPING_REPLY

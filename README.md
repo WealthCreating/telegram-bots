@@ -1,4 +1,4 @@
-Carter Carlson
+Carl Farterson
 
 ## Description
 Scripts for telegram bots
